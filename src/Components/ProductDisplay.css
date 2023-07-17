@@ -1,0 +1,9 @@
+.container {
+    background-image: url("https://img.freepik.com/free-vector/pattern-about-shopping_1061-495.jpg?q=10&h=200");
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content:flex-end;
+    padding-right: 200px;
+    background-color: white;
+}

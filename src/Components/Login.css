@@ -1,0 +1,16 @@
+.form {
+    display:flex;
+    margin-left: 300px;
+    margin-right: 300px;
+    background: white;
+    border-color: #47484C;
+    border-radius: 10px;
+    box-shadow: 1px 2px;
+}
+
+.MuiFormGroup-root {
+    margin: auto;
+    text-align: left;
+}
+
+/* #47484C*/
