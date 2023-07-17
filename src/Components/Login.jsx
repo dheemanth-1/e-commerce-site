@@ -15,7 +15,7 @@ const Login = (props) => {
     const onSubmitHandler = (event) => {
         event.preventDefault()
         props.onSetEmail(event.target[0].value)
-        props.onSetPassword(event.target[1].value)
+        props.onSetPassword(event.target[2].value)
         props.onLoginUser()
     }
 

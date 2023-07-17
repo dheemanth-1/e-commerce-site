@@ -7,13 +7,29 @@ import {
   Stack,
   Grid,
   Button,
+  Modal,
+  Box,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { DevTool } from '@hookform/devtools';
 import axios from 'axios';
+import { useState } from "react";
 
 const SignUpForm = () => {
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+  const [signUpModal, setSignUpModal] = useState(false)
+  const [signUpState, setSignUpState] = useState('')
   const { register, handleSubmit, formState, watch, control } = useForm();
   const { errors } = formState
   const onSubmit = async (data) => {
@@ -36,13 +52,26 @@ const SignUpForm = () => {
         }
     })
         .then((response) => {
-          console.log(response)
+          if (response.data.custId === null && response.data.userId !== null) {
+            setSignUpState(response.data.userId)
+          } else if (response.data.custId === null && response.data.email !== null) {
+            setSignUpState(response.data.email)
+          } else if(response.data.custId !== null){
+            setSignUpState("Sign Up complete!")
+          } else {
+            setSignUpState("Sign Up failed")
+          }
+          console.log(response.data.email)
+          setSignUpModal(true)
         });
     } catch (error) {
       console.log(error.message);
     }
   };
 
+  const closeModalHandler = () => {
+    setSignUpModal(false)
+  }
   
   return (
     <>
@@ -176,6 +205,15 @@ const SignUpForm = () => {
           </CardContent>
         </Card>
       </Container>
+      <Modal open={signUpModal}
+      onClose={closeModalHandler}
+      aria-labelledby="modal-modal-title">
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          {signUpState}
+          </Typography>
+        </Box>
+      </Modal>
     </>
   );
 };

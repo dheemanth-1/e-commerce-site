@@ -6,14 +6,15 @@ import Typography from '@mui/material/Typography';
 import { Button, Container, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 const Navbar = (props) => {
+  const navigate = useNavigate()
+
   const logoutHandler = () => {
     props.setResponseState(null)
+    navigate('/login')
   }
-  const handleCart = () => {
-    console.log("Hi!")
-  }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">   
@@ -29,7 +30,6 @@ const Navbar = (props) => {
               aria-label="cart"
               aria-controls="menu-appbar"
               aria-haspopup="false"
-              onClick={handleCart}
               color="inherit"
             >
               <ShoppingCartIcon color='primary'/>

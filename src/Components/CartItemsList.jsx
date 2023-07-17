@@ -36,7 +36,7 @@ const CartItemsList = ({ custId }) => {
   };
 
   const cartCtx = useContext(CartContext);
-  const [ openOrderPlacedModal, setopenOrderPlacedModal] = useState(true);
+  const [ openOrderPlacedModal, setopenOrderPlacedModal] = useState(false);
 
   const placeOrderHandler = async () => {
     if (cartCtx.items.length !== 0) {
@@ -47,7 +47,7 @@ const CartItemsList = ({ custId }) => {
     const response = await axios.post(
       `${import.meta.env.VITE_API_URL}/addToCart`,
       {
-        custId: custId,
+        userId: custId,
         orderDts: items,
       }
     );

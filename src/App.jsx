@@ -46,11 +46,11 @@ function App() {
         setResponseState(4);
         axios
           .post(`${import.meta.env.VITE_API_URL}/validateCustomer`, {
-            username: email,
+            email: email,
             password: password,
           })
           .then((response) => {
-            setResponseState(response.data.responseCode);
+            setResponseState(response.data.ResponseCode);
             custId = response.data.custId;
           });
       } catch (error) {
