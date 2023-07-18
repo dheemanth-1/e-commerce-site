@@ -10,7 +10,7 @@ import {
   Modal,
   Box,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { DevTool } from '@hookform/devtools';
 import axios from 'axios';
@@ -28,6 +28,7 @@ const SignUpForm = () => {
     boxShadow: 24,
     p: 4,
   };
+  const navigate = useNavigate()
   const [signUpModal, setSignUpModal] = useState(false)
   const [signUpState, setSignUpState] = useState('')
   const { register, handleSubmit, formState, watch, control } = useForm();
@@ -52,11 +53,12 @@ const SignUpForm = () => {
         }
     })
         .then((response) => {
-          if (response.data.custId === null && response.data.userId !== null) {
+          console.log(response.data)
+          if (response.data.fullName === null && response.data.userId !== null) {
             setSignUpState(response.data.userId)
-          } else if (response.data.custId === null && response.data.email !== null) {
+          } else if (response.data.fullName === null && response.data.email !== null) {
             setSignUpState(response.data.email)
-          } else if(response.data.custId !== null){
+          } else if(response.data.fullName !== null){
             setSignUpState("Sign Up complete!")
           } else {
             setSignUpState("Sign Up failed")
@@ -71,6 +73,9 @@ const SignUpForm = () => {
 
   const closeModalHandler = () => {
     setSignUpModal(false)
+    if (signUpState === 'Sign Up complete!') {
+      navigate('/login')
+    }
   }
   
   return (
