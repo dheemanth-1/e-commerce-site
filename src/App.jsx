@@ -30,7 +30,7 @@ function App() {
 
   let email = "";
   let password = "";
-  let custId = "";
+  let userId = "";
 
   const setEmailHandler = (value) => {
     email = value;
@@ -51,7 +51,7 @@ function App() {
           })
           .then((response) => {
             setResponseState(response.data.ResponseCode);
-            custId = response.data.custId;
+            userId = response.data.userId;
           });
       } catch (error) {
         console.log(error.message);
@@ -105,7 +105,7 @@ function App() {
 
 			<Route path="/sign-up" element={<SignUpForm/>}/>
 
-            <Route path="/myCart" element={<CartItemsList custId={custId} />} />
+            <Route path="/myCart" element={<CartItemsList userId={userId} />} />
           </Routes>
           {ErrorDisplay()}
         </CartProvider>

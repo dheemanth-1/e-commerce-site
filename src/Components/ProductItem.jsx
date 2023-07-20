@@ -14,6 +14,7 @@ const ProductItem = ({ product }) => {
       price: product.price
     })
   }
+  
   return (
     <>
       <Grid item xs={3}>
@@ -26,6 +27,7 @@ const ProductItem = ({ product }) => {
                 {`₹${product.price}`}
               </Typography>
               <Button onClick={addCartHandler}>
+                <Typography>{cartCtx.items.find(item => item.id === product.id)?.amount}</Typography>
                 <AddShoppingCartIcon className="add-cart" />
               </Button>
             </Stack>

@@ -22,7 +22,7 @@ import CartContext from "../store/cart-contexst";
 import { useContext, useState } from "react";
 import axios from "axios";
 
-const CartItemsList = ({ custId }) => {
+const CartItemsList = ({ userId }) => {
   const style = {
     position: 'absolute',
     top: '50%',
@@ -47,7 +47,7 @@ const CartItemsList = ({ custId }) => {
     const response = await axios.post(
       `${import.meta.env.VITE_API_URL}/addToCart`,
       {
-        userId: custId,
+        userId: userId,
         orderDts: items,
       }
     );

@@ -31,7 +31,7 @@ const SignUpForm = () => {
   const navigate = useNavigate()
   const [signUpModal, setSignUpModal] = useState(false)
   const [signUpState, setSignUpState] = useState('')
-  const { register, handleSubmit, formState, watch, control } = useForm();
+  const { register, handleSubmit, formState, watch, control } = useForm({mode:"onTouched"});
   const { errors } = formState
   const onSubmit = async (data) => {
     console.log(data)
