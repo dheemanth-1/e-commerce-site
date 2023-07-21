@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { useReducer } from "react";
-import CartContext from "./cart-contexst";
+import CartContext from "./cart-context";
 
 const cartReducer = (state, action) => {
   if (action.type === "ADD") {

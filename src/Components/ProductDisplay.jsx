@@ -37,6 +37,8 @@ const ProductDisplay = () => {
     fetchPosts();
   }, []);
 
+  
+
   return (
     <>
       <div className="container">

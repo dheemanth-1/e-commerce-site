@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import Navbar from "./Components/Navbar";
@@ -10,6 +11,7 @@ import CartItemsList from "./Components/CartItemsList";
 import CartProvider from "./store/ContextProvider";
 import { Navigate } from "react-router-dom";
 import SignUpForm from "./Components/SignUpForm";
+import ProductPage from "./Components/ProductPage";
 
 const Protected = ({ responseState, children }) => {
   if (responseState !== 0) {
@@ -31,7 +33,7 @@ function App() {
   let email = "";
   let password = "";
   let userId = "";
-
+  
   const setEmailHandler = (value) => {
     email = value;
   };
@@ -39,6 +41,7 @@ function App() {
   const setPasswordHandler = (value) => {
     password = value;
   };
+
 
   const LoginUser = async () => {
     if (email.length > 0) {
@@ -89,7 +92,10 @@ function App() {
                 </Protected>
               }
             />
-
+            <Route
+              path="/:id"
+              element={<ProductPage />}
+            />
             <Route
               path="/login"
               element={
@@ -102,7 +108,7 @@ function App() {
                 </Authenticate>
               }
             />
-
+      
 			<Route path="/sign-up" element={<SignUpForm/>}/>
 
             <Route path="/myCart" element={<CartItemsList userId={userId} />} />

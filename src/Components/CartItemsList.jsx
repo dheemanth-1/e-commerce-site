@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import {
   Card,
@@ -14,11 +14,12 @@ import {
   ListItemSecondaryAction,
   Button,
   Modal,
-  Box
+  Box,
+  IconButton
 } from "@mui/material";
 import "./CartItemList.css";
 import CartItem from "./CartItem";
-import CartContext from "../store/cart-contexst";
+import CartContext from "../store/cart-context";
 import { useContext, useState } from "react";
 import axios from "axios";
 
@@ -37,6 +38,7 @@ const CartItemsList = ({ userId }) => {
 
   const cartCtx = useContext(CartContext);
   const [ openOrderPlacedModal, setopenOrderPlacedModal] = useState(false);
+  const navigate = useNavigate()
 
   const placeOrderHandler = async () => {
     if (cartCtx.items.length !== 0) {
@@ -92,9 +94,9 @@ const CartItemsList = ({ userId }) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Link to="/">
-                <CloseIcon color="primary" fontSize="large" />
-              </Link>
+              <IconButton>
+              <CloseIcon color="primary" fontSize="large" onClick={()=>{navigate(-1)}}/>
+              </IconButton>              
             </CardActions>
           </Container>
         </Card>
